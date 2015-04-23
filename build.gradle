@@ -1,0 +1,30 @@
+apply plugin:'java'
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
+
+ext.springVersion			= "4.1.4.RELEASE"
+ext.springSecurityVersion	= "3.2.5.RELEASE"
+ext.hibernateVersion		= "4.3.6.Final"
+
+dependencies {
+        compile "org.springframework:spring-webmvc:$springVersion"
+        compile "org.springframework:spring-core:$springVersion"
+        compile "org.springframework:spring-aop:$springVersion"
+        compile "org.springframework:spring-web:$springVersion"
+        compile "org.springframework:spring-beans:$springVersion"
+        compile "org.springframework:spring-context:$springVersion"
+        compile "org.springframework:spring-tx:$springVersion"
+        compile "org.springframework:spring-orm:$springVersion"
+        compile "org.hibernate:hibernate-core:$hibernateVersion"
+        compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+        compile "org.hibernate:hibernate-jpamodelgen:$hibernateVersion"
+        compile "org.hibernate:hibernate-ehcache:$hibernateVersion"
+        compile "commons-dbcp:commons-dbcp:1.4"
+        compile "javax.servlet:javax.servlet-api:3.0.1"
+        compile "javax.servlet:jstl:1.2"
+        compile "org.hsqldb:hsqldb:2.2.8"
+        compile "com.google.guava:guava:18.0"
+        compile "org.json:json:20090211"
+}
