@@ -1,5 +1,11 @@
 apply plugin:'java'
 
+repositories {
+    flatDir { dirs "src/main/webapp/WEB-INF/lib" }
+    mavenCentral()
+    mavenLocal()
+}
+
 task wrapper(type: Wrapper) {
     gradleVersion = '2.0'
 }
