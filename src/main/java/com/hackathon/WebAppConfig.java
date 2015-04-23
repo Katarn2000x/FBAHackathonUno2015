@@ -1,6 +1,5 @@
-package com.squad.config;
+package com.hackathon;
 
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
@@ -13,14 +12,8 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableTransactionManagement
@@ -33,18 +26,13 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	BasicDataSource dataSource() throws URISyntaxException {
 
-		URI dbUrl = dbUrl();
-		String dbString = "jdbc:postgresql://" + dbUrl.getHost() + ":" + dbUrl.getPort() + dbUrl.getPath();
-		if (useRemoteDatabase()) {
-			dbString += "?ssl=true&amp;sslfactory=org.postgresql.ssl.NonValidatingFactory";
-		}
+		String dbString = "jdbc:mysql://hackdb.c4edy7boveqz.us-west-2.rds.amazonaws.com:3306";
 
 		BasicDataSource result = new BasicDataSource();
 		result.setUrl(dbString);
-		String[] dbUrlTokens = dbUrl.getUserInfo().split(":", 2);
-		result.setUsername(dbUrlTokens[0]);
-		result.setPassword(dbUrlTokens[1]);
-		result.setDriverClassName("org.postgresql.Driver");
+		result.setUsername("admin");
+		result.setPassword("password");
+		result.setDriverClassName("org.mysql.Driver");
 		return result;
 	}
 
