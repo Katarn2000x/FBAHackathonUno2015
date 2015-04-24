@@ -1,5 +1,6 @@
 package com.hackathon.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,17 +22,25 @@ public class ProductDaoImpl implements ProductDao{
     @SuppressWarnings("unchecked")
     @Transactional
     public List<Product> getRandomProducts() throws DataAccessException{
-        Query query = entityManager.createQuery("select p from Product limit 18");
-        List<Product> resultList = query.getResultList();
-        return resultList;
+        try{
+            Query query = entityManager.createQuery("select p from Product limit 18");
+            List<Product> resultList = query.getResultList();
+            return resultList;
+        }catch (Exception exception){
+            return new ArrayList<Product>();
+        }
     }
 
     @SuppressWarnings("unchecked")
     @Transactional
     public List<Product> searchProducts(String searchTerm) throws DataAccessException{
-        Query query = entityManager.createQuery(
-                "select p from Product where ITEM_NAME like '%" + searchTerm + "%' or GL_PRODUCT_GROUP_DESC='gl_" + searchTerm + "'");
-        List<Product> resultList = query.getResultList();
-        return resultList;
+        try{
+            Query query = entityManager.createQuery(
+                    "select p from Product where ITEM_NAME like '%" + searchTerm + "%' or GL_PRODUCT_GROUP_DESC='gl_" + searchTerm + "'");
+            List<Product> resultList = query.getResultList();
+            return resultList;
+        }catch (Exception exception){
+            return new ArrayList<Product>();
+        }
     }
 }
