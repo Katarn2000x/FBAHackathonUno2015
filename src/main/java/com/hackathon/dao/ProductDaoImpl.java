@@ -17,7 +17,7 @@ public class ProductDaoImpl implements ProductDao{
     
     @PersistenceContext
     private EntityManager entityManager;
- 
+    
     @SuppressWarnings("unchecked")
     @Transactional
     public List<Product> getProducts() throws DataAccessException {
