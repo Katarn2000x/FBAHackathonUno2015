@@ -39,8 +39,7 @@ public class PersistenceConfig {
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		jpaProperties.put("hibernate.show_sql", "true");
-		jpaProperties.put("hibernate.hbm2ddl.auto", "create");
-		jpaProperties.put("hibernate.temp.use_jdbc_metadata_defaults","false");
+		jpaProperties.put("hibernate.hbm2ddl.auto", "validate");
 		entityManagerFactory.setJpaProperties(jpaProperties);
 		return entityManagerFactory;
 	}
