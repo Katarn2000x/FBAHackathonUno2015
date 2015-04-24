@@ -30,7 +30,7 @@ public class ProductDaoImpl implements ProductDao{
     @Transactional
     public List<Product> searchProducts(String searchTerm) throws DataAccessException{
         Query query = entityManager.createQuery(
-                "select p from Product where title like '%" + searchTerm + "%'");
+                "select p from Product where ITEM_NAME like '%" + searchTerm + "%' or GL_PRODUCT_GROUP_DESC='gl_" + searchTerm + "'");
         List<Product> resultList = query.getResultList();
         return resultList;
     }
