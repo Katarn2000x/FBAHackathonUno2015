@@ -36,4 +36,5 @@ dependencies {
         compile "org.hsqldb:hsqldb:2.2.8"
         compile "com.google.guava:guava:18.0"
         compile "org.json:json:20090211"
+        compile "mysql:mysql-connector-java:5.1.35"
 }
