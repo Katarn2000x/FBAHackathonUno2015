@@ -25,7 +25,7 @@ public class ProductDaoImpl implements ProductDao{
         CriteriaQuery<Product> cq = entityManager.getCriteriaBuilder().createQuery(Product.class);
         Root<Product> root = cq.from(Product.class);
         cq.select(root);
-        List<Product> resultList = entityManager.createQuery(cq).getResultList();
+        List<Product> resultList = entityManager.createQuery(cq).setMaxResults(18).getResultList();
         return resultList;
     }
 
