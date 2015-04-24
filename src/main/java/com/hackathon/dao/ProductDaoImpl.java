@@ -20,13 +20,18 @@ public class ProductDaoImpl implements ProductDao{
     
     @SuppressWarnings("unchecked")
     @Transactional
-    public List<Product> getProducts() throws DataAccessException {
-        Query query = entityManager.createQuery("select p from Product p");
+    public List<Product> getRandomProducts() throws DataAccessException{
+        Query query = entityManager.createQuery("select p from Product limit 18");
         List<Product> resultList = query.getResultList();
         return resultList;
     }
+
+    @SuppressWarnings("unchecked")
     @Transactional
-    public Product getProduct(String asin) throws DataAccessException {
-        return entityManager.find(Product.class, asin);
-    }    
+    public List<Product> searchProducts(String searchTerm) throws DataAccessException{
+        Query query = entityManager.createQuery(
+                "select p from Product where title like '%" + searchTerm + "%'");
+        List<Product> resultList = query.getResultList();
+        return resultList;
+    }
 }
