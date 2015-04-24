@@ -1,4 +1,5 @@
 apply plugin:'java'
+apply plugin: 'war'
 
 repositories {
     flatDir { dirs "src/main/webapp/WEB-INF/lib" }
