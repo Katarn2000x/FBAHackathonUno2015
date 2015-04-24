@@ -24,7 +24,7 @@ public class PersistenceConfig {
 		result.setPassword("password");
 		result.setDriverClassName("com.mysql.jdbc.Driver");
 		
-		result.setMaxActive(10);
+		result.setInitialSize(1);
 		
 		System.out.println("this worked");
 		
@@ -39,7 +39,8 @@ public class PersistenceConfig {
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
 		jpaProperties.put("hibernate.show_sql", "true");
-		jpaProperties.put("hibernate.hbm2ddl.auto", "update");
+		jpaProperties.put("hibernate.hbm2ddl.auto", "create");
+		jpaProperties.put("hibernate.temp.use_jdbc_metadata_defaults","false");
 		entityManagerFactory.setJpaProperties(jpaProperties);
 		return entityManagerFactory;
 	}

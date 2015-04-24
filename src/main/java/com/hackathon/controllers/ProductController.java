@@ -17,7 +17,7 @@ public class ProductController {
 	
     @Autowired ProductDao productDao;
     
-    @RequestMapping("/products/random")
+    @RequestMapping(value="/products/random", produces="application/json")
     public ResponseEntity<List<Product>> getRandomProduct() {
         
         return new ResponseEntity<List<Product>>(productDao.getRandomProducts(), HttpStatus.OK);

@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 
 import org.springframework.dao.DataAccessException;
@@ -19,16 +21,13 @@ public class ProductDaoImpl implements ProductDao{
     @PersistenceContext
     private EntityManager entityManager;
     
-    @SuppressWarnings("unchecked")
     @Transactional
     public List<Product> getRandomProducts() throws DataAccessException{
-        try{
-            Query query = entityManager.createQuery("select p from Product limit 18");
-            List<Product> resultList = query.getResultList();
-            return resultList;
-        }catch (Exception exception){
-            return new ArrayList<Product>();
-        }
+        CriteriaQuery<Product> cq = entityManager.getCriteriaBuilder().createQuery(Product.class);
+        Root<Product> root = cq.from(Product.class);
+        cq.select(root);
+        List<Product> resultList = entityManager.createQuery(cq).getResultList();
+        return resultList;
     }
 
     @SuppressWarnings("unchecked")
